@@ -1,11 +1,106 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .h {
+            background-color: #f0f0f0;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .h3 {
+            background-color: #343a40;
+            margin: 0;
+            padding: 10px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .h4 {
+            background-color: #f6f7f8;
+            height: 1000px;
+            text-indent: 13px;
+        }
+
+        .h5 {
+            border: 1px solid lightgrey;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .h6 {
+            margin-top: 10px;
+            margin-left: 23px;
+            margin-right: 23px;
+        }
+        .h7 {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    </style>
+
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
-
-
+<div class="h3">
+    <h5 th:text="${user.getName()}" style="color: white"></h5>
+    <h5 style="color: white; padding-left: 8px">with roles:</h5>
+    <h5 th:each="role : ${user.authorities}" th:text="${role.authority}"
+        style="color: white; padding-left: 8px"></h5>
+    <form class="h7" th:action="@{/logout}" method="get">
+        <input type="submit" class="btn btn-dark" value="Logout"/>
+    </form>
+</div>
+<div class="row">
+    <div class="col-2" style="margin-top: 10px; padding: 0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white bs-side-navbar">
+            <div class="navbar-nav flex-column w-100">
+                <a class="nav-link btn btn-primary btn-block text-white"
+                   th:href="@{/user/}"
+                   th:classappend="${#httpServletRequest.getRequestURI() == '/user/' ? 'active' : ''}">User</a>
+            </div>
+        </nav>
+    </div>
+    <div class="col-10" style="margin: 0; padding: 0;">
+        <div class="h4">
+            <h1>User information-page</h1>
+            <div class="col-10">
+                <div class="h5">
+                    <div class="h">
+                        <div class="col">
+                            <h5>About user</h5>
+                        </div>
+                    </div>
+                    <div class="h6">
+                        <table class="table caption-top">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Login</th>
+                                <th scope="col">Email</th>
+                            </tr>
+                            <tbody>
+                            <tr class="table-secondary">
+                                <td th:text="${user.getId()}">
+                                <td th:text="${user.getName()}">
+                                <td th:text="${user.getEmail()}">
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
