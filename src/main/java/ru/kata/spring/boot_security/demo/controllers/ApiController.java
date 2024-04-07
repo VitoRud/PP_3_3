@@ -61,9 +61,8 @@ public class ApiController {
     }
 
     @DeleteMapping("/users/{id}")
-    public String deleterUser(@PathVariable long id) {
+    public void deleterUser(@PathVariable long id) {
         us.removeUser(id);
-        return "User with ID = " + id + " was delete";
     }
 
 }

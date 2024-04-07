@@ -1,5 +1,4 @@
 const url = 'http://localhost:8080/api/user'
-;
 
 function getUser() {
     fetch(url)

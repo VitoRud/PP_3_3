@@ -28,7 +28,9 @@ function createNewUser() {
                 alert("User with this username already exist!!")
             }else {
                 $('#home-tab').click()
+                getUsers()
             }
         });
     });
 }
+

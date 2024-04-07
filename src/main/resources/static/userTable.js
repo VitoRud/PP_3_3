@@ -1,10 +1,11 @@
 const alluser = $('#allUsers')
-getUsers()
+
 function getUsers() {
+    alluser.empty()
     fetch("api/users")
         .then(res => res.json())
         .then(f => { f.forEach(user => {
-            const roles = user.roles.map(role => role.name).join(',');
+            const roles = user.roles.map(role => role.name).join(', ');
             const users = $(
                 `<tr class="table-secondary">
                         <td>${user.id}</td>
@@ -27,4 +28,5 @@ function getUsers() {
         });
         })
 }
+getUsers()
 
